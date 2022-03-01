@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Lottery Simulator</title>
+        <style type="text/css">
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: #164773;
+            color: white;
+            font-size: 30px;
+        }
+        h1 {
+            text-align: center;
+        }
+        body {
+            font-size: 20px;
+        }
+        </style>
+    </head>
+    <body>
+        
+        
+        <div class="header">
+        <h1>LOTTERY SIMULATOR</h1>
+        <p>A simulation of the Lottery. How much will you win? </p>
+        </div>
+        
+        <script language = "javascript">
+        // gets a random number qith the 
+    function getRandomInt(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+    var matches = 0;
+    var luckyball = false;
+         
+         picks = [getRandomInt(1, 48), getRandomInt(1, 48),getRandomInt(1, 48),
+              getRandomInt(1, 48), getRandomInt(1, 48)];
+        // gets rid of repitition
+        for (var i = 0; i < picks.length; i++) {
+            for (var r = i + 1; r < picks.length; r++) {
+                if (picks[i] === picks[r]) {
+                    picks[r] = getRandomInt(1, 48);
+                }
+            }
+            
+        }      
+              document.write("Original picks: " +"<br>");
+              for (var i = 0; i < picks.length; i++) {
+                 document.write(picks[i] +"<br>");
+              }
+              document.write("<br>" + "Sorted picks: " +"<br>");
+              picks.sort(function(a, b){return a - b});;
+              for (var i = 0; i < picks.length; i++) {
+                 document.write(picks[i] +"<br>");
+              }
+              
+        luckybpick= getRandomInt(1,18);
+         document.write("<br>" + "Lucky Ball picked: " + luckybpick + "<br>");
+        // winning numbers 
+        lottery =  [12,15,24,35, 48];
+        luckyb = 3;   
+          document.write("Winning Numbers: " );
+         for (var i = 0; i < lottery.length; i++) {
+             document.write(lottery[i] + " ");
+         }
+          document.write("<br>" + "Winning Lucky Ball: " + luckyb + "<br>");
+        
+         
+        if (luckybpick === luckyb) {
+           document.write("The Lucky Ball Matched!!!" + "<br>"); 
+           luckyball = true;
+        }
+        
+         for (var i = 0; i < picks.length; i++) {
+             for (var r = 0; r < lottery.length; r++) {
+                 if (picks[i] === lottery[r]) {
+                      matches++;
+                 }
+             }
+             
+         }
+         document.write("Number of matches: " + matches +"<br>");
+         
+         if (luckyball & matches === 5) {
+             document.write("You win $7,000 a week for LIFE!!! "+"<br>");
+             
+         }
+        else if (!luckyball & matches === 5){
+              document.write("You win $25,000 a year for LIFE!!! "+ "<br>");
+         }
+        else if (luckyball & matches === 4) {
+              document.write("You win $5,000!!! "+"<br>");
+         }
+        else if (!luckyball & matches === 4) {
+              document.write("You win $200!!! "+"<br>");
+         }
+         else if (luckyball & matches === 3) {
+              document.write("You win $150 !!! "+"<br>");
+         }
+        else if (!luckyball & matches === 3) {
+              document.write("You winn $20!!! "+"<br>");
+         }
+        else if (luckyball & matches === 2) {
+              document.write("You win $25!!!"+"<br>");
+         }
+        else if ((!luckyball) & matches === 2) {
+              document.write("You win $3!!!"+ "<br>");
+         }
+        else if (luckyball & matches === 1) {
+              document.write("You win $6!!!"+"<br>");
+         } 
+         else if (luckyball & matches === 0) {
+               document.write("You win $4!!!" + "<br>");
+         }
+         else {
+             document.write("You did not win anything :(" + "<br>" +
+                "Better luck next time.");
+         }
+
+            </script>
+    </body>
+</html>
